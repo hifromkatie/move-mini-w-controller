@@ -1,62 +1,42 @@
-radio.onReceivedValue(function (name, value) {
-    if (name == "forwards") {
-        if (value == 1) {
-            basic.showLeds(`
-                . . # . .
-                . # # # .
-                # . # . #
-                . . # . .
-                . . # . .
-                `)
-            kitronik_servo_lite.forward()
-        } else {
-            basic.showIcon(IconNames.Happy)
-            kitronik_servo_lite.stop()
-        }
-    } else if (name == "backwards") {
-        if (value == 1) {
-            basic.showLeds(`
-                . . # . .
-                . . # . .
-                # . # . #
-                . # # # .
-                . . # . .
-                `)
-            kitronik_servo_lite.backward()
-        } else {
-            basic.showIcon(IconNames.Happy)
-            kitronik_servo_lite.stop()
-        }
-    } else if (name == "left") {
-        if (value == 1) {
-            basic.showLeds(`
-                . . # . .
-                . # . . .
-                # # # # #
-                . # . . .
-                . . # . .
-                `)
-            kitronik_servo_lite.left()
-        } else {
-            basic.showIcon(IconNames.Happy)
-            kitronik_servo_lite.stop()
-        }
-    } else if (name == "right") {
-        if (value == 1) {
-            basic.showLeds(`
-                . . # . .
-                . . . # .
-                # # # # #
-                . . . # .
-                . . # . .
-                `)
-            kitronik_servo_lite.right()
-        } else {
-            basic.showIcon(IconNames.Happy)
-            kitronik_servo_lite.stop()
-        }
+radio.onReceivedNumber(function (receivedNumber) {
+    if (receivedNumber == 1) {
+        basic.showLeds(`
+            . . # . .
+            . # # # .
+            # . # . #
+            . . # . .
+            . . # . .
+            `)
+        kitronik_servo_lite.driveForwards(1)
+    } else if (receivedNumber == 2) {
+        basic.showLeds(`
+            . . # . .
+            . . # . .
+            # . # . #
+            . # # # .
+            . . # . .
+            `)
+        kitronik_servo_lite.driveBackwards(1)
+    } else if (receivedNumber == 3) {
+        basic.showLeds(`
+            . . # . .
+            . # . . .
+            # # # # #
+            . # . . .
+            . . # . .
+            `)
+        kitronik_servo_lite.turnLeft(90)
+    } else if (receivedNumber == 4) {
+        basic.showLeds(`
+            . . # . .
+            . . . # .
+            # # # # #
+            . . . # .
+            . . # . .
+            `)
+        kitronik_servo_lite.turnRight(90)
     } else {
-        basic.showIcon(IconNames.Happy)
+        basic.showIcon(IconNames.No)
         kitronik_servo_lite.stop()
     }
 })
